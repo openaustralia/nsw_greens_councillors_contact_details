@@ -15,7 +15,6 @@ t = extract_table_contents(page.at("table"))
 
 t[1..-1].each do |row|
   # Order of data: "Council or Shire", "Councillor Name", "Phone", "Email", "Ward"
-  p row
   raise "Unexpected number of items" unless row.count == 5
   raise "Unexpected number of phone numbers" unless row[2].split("\n").count <= 2
 
