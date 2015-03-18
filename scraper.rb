@@ -17,10 +17,13 @@ t[1..-1].each do |row|
   # Order of data: "Council or Shire", "Councillor Name", "Phone", "Email", "Ward"
   p row
   raise "Unexpected number of items" unless row.count == 5
+  raise "Unexpected number of phone numbers" unless row[2].split("\n").count <= 2
+
   record = {
     "council" => row[0],
     "name" => row[1],
-    "phone" => row[2],
+    "phone1" => row[2].split("\n")[0],
+    "phone2" => row[2].split("\n")[1],
     "email" => row[3],
     "ward" => row[4]
   }
