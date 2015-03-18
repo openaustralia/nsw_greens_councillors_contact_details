@@ -18,9 +18,18 @@ t[1..-1].each do |row|
   raise "Unexpected number of items" unless row.count == 5
   raise "Unexpected number of phone numbers" unless row[2].split("\n").count <= 2
 
+  if row[1] =~ /- Mayor/
+    name = row[1].gsub("- Mayor", "")
+    position = "mayor"
+  else
+    name = row[1]
+    position = nil
+  end
+
   record = {
     "council" => row[0],
-    "name" => row[1],
+    "name" => name,
+    "position" => position,
     "phone1" => row[2].split("\n")[0],
     "phone2" => row[2].split("\n")[1],
     "email" => row[3],
